@@ -1,10 +1,19 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project "CryproInsights" was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### PreRequisit
+
+First make a root folder and then clone this website
+
+### Installing the dependencies
+
+If node.js is not present, then install.
+After installation, open the vs-studio inbuil terminal and enter 'npm i' to install all the dependencies
 
 ### `npm start`
 
