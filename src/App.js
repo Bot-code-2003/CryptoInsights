@@ -1,6 +1,6 @@
 import React from "react";
-import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-import { Layout, Typography, Space } from "antd";
+import { Routes, Route } from "react-router-dom";
+import { Typography } from "antd";
 
 import {
   Navbar,
@@ -19,7 +19,10 @@ const App = () => {
       <div className="main">
         <div className="routes">
           <Routes>
+            //By default Homepage component is gonna show up in main as its path is "/"
             <Route exact path="/" element={<Homepage />} />
+            //If user clicks on cryptocurrencies menu in navbar then as its linked to "/cryptocurrencies"
+            //the below route triggers nd Cryptocurrencies component is gonna show up
             <Route
               exact
               path="/cryptocurrencies"

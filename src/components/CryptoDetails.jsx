@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import HTMLReactParser from "html-react-parser";
+import React from "react";
 import { useParams } from "react-router-dom";
 import millify from "millify";
-import { Col, Row, Typography, Select } from "antd";
+import { Col, Row, Typography } from "antd";
 import {
   MoneyCollectOutlined,
   DollarCircleOutlined,
@@ -14,30 +13,18 @@ import {
   NumberOutlined,
   ThunderboltOutlined,
 } from "@ant-design/icons";
-
-import {
-  useGetCryptoDetailsQuery,
-  useGetCryptoHistoryQuery,
-} from "../services/cryptoApi";
+import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
 import FixedSizeGrid from "./FixedSizeGrid";
-// import Loader from "./Loader";
-// import LineChart from "./LineChart";
 
 const { Title, Text } = Typography;
-const { Option } = Select;
-
 const CryptoDetails = () => {
+  // Here the coinId of the clicked card in <cryptoCurrencies />component is extracted
   const { coinId } = useParams();
-  const [timeperiod, setTimeperiod] = useState("7d");
+  // By sending the coinId as param, we get hold of the data of the particular coin
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-  const { data: coinHistory } = useGetCryptoHistoryQuery({
-    coinId,
-  });
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return "Loading...";
-
-  const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
   const stats = [
     {
@@ -171,9 +158,14 @@ const CryptoDetails = () => {
           ))}
         </Col>
       </Col>
+
       <Col style={{ marginTop: "10px" }}>
+        {/* The prop coinId is used in services to getGryptoHistory, as well as 
+        use in FixedSizedGrid as its the component responsible for loading the 
+        prev history of particular coin */}
         <FixedSizeGrid coinId={coinId} />
       </Col>
+
       <Col className="coin-desc-link">
         <Col className="coin-links">
           <Title level={3} className="coin-details-heading">

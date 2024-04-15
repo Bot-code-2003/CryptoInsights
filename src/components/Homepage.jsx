@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import GithubOutlined from "@ant-design/icons/GithubOutlined";
 import ApiFilled from "@ant-design/icons/ApiFilled";
-import { Button, Flex } from "antd";
+import { Button } from "antd";
 
 const { Title } = Typography;
 const Homepage = () => {
   const substituteParam = 1;
+  // The useGetCryptosQuery() expects a parameter count (u can check in services (cryptoApi.js))
+  // The reason why substituteParam is 1 but the posts loaded are 10 is because its being overrided
+  //-in the line 8 (const count = simplified ? 10 : 100;) in <Cryprocurrencies /> component.
+  //In class "home-heading-container", we can see that <Cryptocurrencies simplified />  (a param called simplified is being passed)
   const { data, isFetching } = useGetCryptosQuery(substituteParam);
   console.log(data);
   const globalStats = data?.data?.stats;

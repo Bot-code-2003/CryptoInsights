@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Row, Col, Typography } from "antd";
+import { Typography } from "antd";
 import { useGetCryptoHistoryQuery } from "../services/cryptoApi";
 
 const { Title } = Typography;
@@ -13,10 +13,11 @@ export default function FixedSizeGrid(props) {
   if (isFetching) return "Loading...";
 
   // Extract and format timestamp and price data for the DataGrid
+  //Each dataPoint in map has 2 properties , 1.timestamp and 2. price
   const rows = coinHistory?.data?.history.map((dataPoint, index) => ({
     id: index + 1, // Adding unique IDs for each row
     timestamp: new Date(dataPoint.timestamp).toLocaleString(), // Format timestamp
-    price: dataPoint.price, // Price data
+    price: dataPoint.price,
   }));
 
   // Define columns for the DataGrid
